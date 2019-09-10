@@ -1,0 +1,70 @@
+/** Specification for data to be put into course dashboard.  Require descriptive strings for each type of category. 
+	Taken from 2D arraylist outputted by backend.
+ */
+{
+	"curriculum": "<name>", //title of major-minor-track combination
+	"credits": #, //simple integer field showing how many credits are required for majors + minors + tracks
+	"categories": [
+
+		/** First category is course requirements. Exactly one generated.
+			Identified by a 0 in the first index of a row in Ben's arraylist.
+		 */
+		{
+			"type": "Required", 
+			"label": "Required courses",
+			"credits": //integer sum of credits for all courses,
+			"courses": [
+			/** array of courses. Each course contains a title, course number,
+				and credit level. Example below:
+				{"id":"AS.171.201", "title": "Special Relativity and Waves", "credits": 4}
+			 **/
+			]
+		},
+
+		/** Second type of category is courses from list. 
+			Labelled "<x> credits of following courses".
+			Variable quantity.
+			Identified by 1 in first index.
+		 */
+		 {
+			"type": "Selected courses",
+			"label": "<x> credits of following courses",
+			"credits": x,
+		 	"courses": [
+		 		//array of courses
+			]
+		 }
+
+		/** Third type of category is distribution requirements.
+			Labelled '<x> credits of <areas> courses at <x>00-level'.
+			Special case of general distribution requirements: when the level is unspecified, 
+			but the areas are.  Write the label as '<x> credits of <areas>'.
+			Identified by 2 in first index.
+		 */
+		{
+			"type": "Distribution Requirement",
+			"label": "'Minimum <x> credits of ><x>-credit <area/dept> courses at <x>00-level or above' XOR '<x> credits of <area/dept>'",
+			"credits": x,
+			/** Note that it's possible to have a distribution across multiple departments.
+				For example, Arts & Sciences students must take 9 credits of Natural,
+				Quantitative, or Engineering Sciences.  In this case, write
+				"Minimum 9 credits of Natural, Quantitative, or Engineering Sciences".
+			 */
+
+		},
+
+		/** Fourth category type is the option. Labelled "Choose one of <x> options." 
+			Contains category subchildren that are one of the three prior types.
+			Identified by 3 in first index.
+		 */
+		{
+			"type": "Option",
+			"label": "Choose one of <x> options",
+			"tracks": [
+				/** Array of subcategories.  Each track contains one of the prior three categories. 
+					30,31, or 32 in first index. Credit count calculated the same.
+			 	 */
+			]
+		}
+	] //end categories
+}

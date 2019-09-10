@@ -1,0 +1,94 @@
+nav {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  height: 50px;
+  z-index: 800;
+}
+nav .liner {
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-between;
+  text-align: center;
+}
+nav li {
+  display: inline-block;
+  z-index: 60;
+  height: 50px;
+  width: auto;
+  box-sizing: border-box;
+  padding: 0 15px;
+}
+nav li:hover {
+  background: rgba(0,0,0,.07);
+}
+  nav li.large {
+    width: 150px;
+  }
+nav a {
+  display: block;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 15px;
+  line-height: 50px;
+  letter-spacing: 0.5px;
+  color: #000
+}
+nav, nav li, nav a {
+  transition: 0.2s ease-out;
+}
+nav a br {
+  display: none;
+}
+nav a.active {
+  font-weight: 600;
+}
+nav li.logo {
+  color: #000;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Open Sans";
+  font-size: 20px;
+  line-height: 50px;
+}
+nav li.logo:hover {
+  background: none;
+}
+
+/* mobile av  */
+nav.mobile {
+  display: none;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
+nav .logo .fa {
+  border: none;
+  color: #000;
+  margin: 0;
+}
+nav .logo .fa:hover {
+  background: none;
+}
+nav.mobile > .logo {
+  justify-content: center;
+}
+/* media query for mobile responsiveness */
+@media (max-width: 648px) {
+  nav.mobileHide {
+    display: none;
+  }
+  nav.mobile {
+    display: block;
+  }
+}
+/* Modal CSS */
+.backdrop {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 750;
+  background: rgba(20,25,30,0.8);
+}
